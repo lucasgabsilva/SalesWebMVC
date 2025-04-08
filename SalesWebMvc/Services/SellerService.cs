@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using SalesWebMvc.Models;
+using Microsoft.EntityFrameworkCore;
 namespace SalesWebMvc.Services
+
 {
     public class SellerService
     {
@@ -26,7 +28,7 @@ namespace SalesWebMvc.Services
         //buscando um vendedor por id
         public Seller FindById(int id)
         {
-            return _context.Seller.FirstOrDefault(obj => obj.Id == id);
+            return _context.Seller.Include(obj => obj.Department).FirstOrDefault(obj => obj.Id == id);
         }
         //realizando ações com o id encontrado
 
